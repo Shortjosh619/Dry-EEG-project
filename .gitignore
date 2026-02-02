@@ -1,0 +1,24 @@
+# --- EEG data (NEVER commit) ---
+raw/
+processed/
+data/
+*.bdf
+
+# --- outputs (optional: keep figs/results if small; otherwise ignore) ---
+outputs/
+figures/
+
+# --- python ---
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+env_ajemiri/
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
