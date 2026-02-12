@@ -1,3 +1,8 @@
+#DEPRACATED- Do not use this for analysis
+#This file contains auto resclaing which isnt comparable across my pipelines
+#did not delete as already committed when i first made this repo
+#Replaced this by shared framework in later baseline script
+
 import numpy as np 
 import mne 
 import matplotlib.pyplot as plt
