@@ -9,10 +9,8 @@ from dryeeg.io_standardize import standardize_raw
 from dryeeg.preprocess_base import base_preprocess
 
 #Used data from first subject
-EO_path = r"C:\EEG_Dissertation\raw\sub-001\Session 1\Eyes-Open\Dry-EEG_09_02_2026_17_15_47.bdf"
-EC_path = r"C:\EEG_Dissertation\raw\sub-001\Session 1\Eyes Closed\Dry-EEG_09_02_2026_18_03_17.bdf"
-
-#list of tuples for the for loop below
+EO_path = r"C:\EEG_Dissertation\raw\sub-001\Session 2\Eyes-Open\Dry-EEG_12_02_2026_17_22_49.bdf"
+EC_path = r"C:\EEG_Dissertation\raw\sub-001\Session 2\Eyes-Closed\Dry-EEG_12_02_2026_17_27_45.bdf"
 cases = [("Eyes-Open", EO_path) ,("Eyes-Closed", EC_path)]
 
 for label, path in cases:
