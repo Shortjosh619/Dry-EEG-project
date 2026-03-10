@@ -24,16 +24,22 @@ CH_RENAME = {
 MONTAGE_NAME = "standard_1020"
 
 # Scaling (single constant)
-# Based on probe values (~2e5) => divide by 1e9 gives ~200 µV RMS scale.
-SCALING_DIVISOR = 1_000_000_000.0  # divide EEG channels by this
+# divide by 1e6 gives ~200 µV RMS scale.
+SCALING_DIVISOR = 1_000_000.0  # divide EEG channels by this
 
 # Post-scale RMS plausibility warnings (µV). Warnings only, never changes scaling.
 RMS_UV_WARN_LOW = 0.05
-RMS_UV_WARN_HIGH = 500.0
+RMS_UV_WARN_HIGH = 1_000_000.0
 
 # Pilot segment selection 
-SEGMENT_START_S = 2.0
+SEGMENT_SELECT_MODE = "best"
+SEGMENT_START_S = 0.0
 SEGMENT_DUR_S = 120.0
+SEGMENT_STEP_S = 1.0
+
+SELECT_MIN_RMS_UV = 1.0
+SELECT_MAX_RMS_UV = 200.0
+SELECT_SPIKE_UV = 150.0
 
 # Base preprocessing (Pipeline 1 shared)
 # Keep QC denominator consistent with cleaning: 1–30 Hz.
@@ -56,7 +62,7 @@ BANDS = {
     "beta":  (13.0, 30.0),
 }
 REL_ALPHA_DENOM = (1.0, 30.0)
-ALPHA_PEAK_RANGE = (6.0, 14.0)
+ALPHA_PEAK_RANGE = (8.0, 13.0)
 
 FRONTAL = ["Fz"]
 OCCIPITAL = ["PO7", "Oz", "PO8"]

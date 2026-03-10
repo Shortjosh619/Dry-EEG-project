@@ -7,7 +7,7 @@ If notch outside low-pass, it will be logged in the report as skipped
 Base preprocessing should not alter scaling or channel set
 """
 
-from dryeeg.settings import REREF_POLICY, NOTCH_FREQS_HZ, BANDPASS_H_HZ, BANDPASS_L_HZ
+from src.dryeeg.settings import REREF_POLICY, NOTCH_FREQS_HZ, BANDPASS_H_HZ, BANDPASS_L_HZ
  
 def base_preprocess(raw):
     raw_out = raw.copy()
@@ -33,12 +33,15 @@ def base_preprocess(raw):
     report['notch']['reason'] = reason
 
     raw_out.info['line_freq'] = 50
-    raw_out.filter(l_freq= BANDPASS_L_HZ, h_freq= BANDPASS_H_HZ)
+    raw_out.filter(l_freq=BANDPASS_L_HZ, h_freq=BANDPASS_H_HZ)
+    print(f"After bandpass - std: {raw_out.get_data().std()}")  # ADD THIS
+    
     if applied:
-        raw_out.notch_filter(freqs= eligible)
+        raw_out.notch_filter(freqs=eligible)
+        print(f"After notch - std: {raw_out.get_data().std()}")  # ADD THIS
     
     raw_out.set_eeg_reference(ref_channels=REREF_POLICY)
-
+    print(f"After reref - std: {raw_out.get_data().std()}") 
 
     return raw_out, report
 

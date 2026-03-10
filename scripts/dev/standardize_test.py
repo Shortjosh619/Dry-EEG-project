@@ -1,10 +1,10 @@
 import sys
 import json
 
-# allow importing from src/
-sys.path.append("src")
+# import from current working directory. I will apply this to all my smoke tests from now on
+sys.path.insert(0, ".")
 
-from dryeeg.io_standardize import standardize_raw
+from src.dryeeg.io_standardize import standardize_raw
 
 EO = r"C:\EEG_Dissertation\raw\Dry-EEG_29_01_2026_13_43_00.bdf"
 EC = r"C:\EEG_Dissertation\raw\Dry-EEG_29_01_2026_13_59_01.bdf"

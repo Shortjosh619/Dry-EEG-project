@@ -3,10 +3,10 @@
 
 import sys 
 
-sys.path.append("src")
+sys.path.insert(0,".")
 
-from dryeeg.io_standardize import standardize_raw
-from dryeeg.preprocess_base import base_preprocess
+from src.dryeeg.io_standardize import standardize_raw
+from src.dryeeg.preprocess_base import base_preprocess
 
 #Used data from first subject
 EO_path = r"C:\EEG_Dissertation\raw\sub-001\Session 2\Eyes-Open\Dry-EEG_12_02_2026_17_22_49.bdf"
