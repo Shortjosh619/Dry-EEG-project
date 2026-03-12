@@ -1,6 +1,3 @@
-# src/dryeeg/io_standardize.py
-from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 
@@ -160,7 +157,7 @@ def standardize_raw(path: str) -> Tuple[mne.io.BaseRaw, StandardizeReport]:
         warnings.append(f"Missing expected channels in file: {missing}")
     raw.rename_channels(rename_map)
 
-    # Set channel types explicitly to EEG for our 8 channels
+    # Set channel types explicitly to EEG for the 8 channels
     set_types = {v: "eeg" for v in S.CH_RENAME.values() if v in raw.ch_names}
     raw.set_channel_types(set_types)
 

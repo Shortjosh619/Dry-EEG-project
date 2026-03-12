@@ -27,3 +27,8 @@ env_ajemiri/
 .DS_Store
 Thumbs.db
 derivatives/ 
+
+
+#-miscellaneous
+docs/
+notebooks/

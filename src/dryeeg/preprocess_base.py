@@ -34,11 +34,11 @@ def base_preprocess(raw):
 
     raw_out.info['line_freq'] = 50
     raw_out.filter(l_freq=BANDPASS_L_HZ, h_freq=BANDPASS_H_HZ)
-    print(f"After bandpass - std: {raw_out.get_data().std()}")  # ADD THIS
+    print(f"After bandpass - std: {raw_out.get_data().std()}")  
     
     if applied:
         raw_out.notch_filter(freqs=eligible)
-        print(f"After notch - std: {raw_out.get_data().std()}")  # ADD THIS
+        print(f"After notch - std: {raw_out.get_data().std()}")  
     
     raw_out.set_eeg_reference(ref_channels=REREF_POLICY)
     print(f"After reref - std: {raw_out.get_data().std()}") 

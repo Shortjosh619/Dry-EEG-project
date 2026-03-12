@@ -8,7 +8,7 @@ from src.dryeeg.logging_utils import generate_run_id, derive_output_paths
 from src.dryeeg.qc import generate_qc_report
 
 # Load and preprocess pilot data
-test_file = r"C:\EEG_Dissertation\raw\sub-001\ses-01\eyes-closed\Dry-EEG_09_02_2026_18_03_17.bdf"
+test_file = r"C:\EEG_Dissertation\raw\sub-002\ses-01\eyes-open\UnicornRawDataRecorder_18_02_2026_21_49_51.bdf"
 raw, report = standardize_raw(test_file)
 
 if report.warnings:

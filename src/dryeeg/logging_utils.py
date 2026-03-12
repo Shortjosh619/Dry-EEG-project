@@ -50,7 +50,7 @@ def derive_output_paths(source_path, pipeline_name, run_id, derivatives_root):
     
     return {
         "output_dir": output_dir,
-        "cleaned_fif_path": output_dir / "data" / f"{run_id}_cleaned.fif",
+        "cleaned_fif_path": output_dir / "data" / f"{run_id}_eeg.fif",
         "psd_plot_path": output_dir / "qc" / f"{run_id}_psd.png",
         "bandpower_csv_path": output_dir / "qc" / f"{run_id}_bandpower.csv",
         "manifest_path": output_dir / "logs" / f"{run_id}_manifest.json",
@@ -102,7 +102,7 @@ def get_logger(run_id, log_dir):
     logger = logging.getLogger(run_id)
     logger.setLevel(logging.INFO)
 
-    handler = logging.FileHandler(log_path)
+    handler = logging.FileHandler(log_path, encoding="utf-8")
     handler.setFormatter(logging.Formatter("(%asctime)s | %(levelname)s | %(message)s"))
 
     logger.addHandler(handler)
