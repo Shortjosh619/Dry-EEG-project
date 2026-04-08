@@ -15,7 +15,8 @@ def get_data():
 
     for col in data:
         columns = col.split(os.sep)
-        #print(columns) this print statemrnt was just for me to debug. my glob didnt collect anything initially because it couldnt find the results folder with my import so added the sys line at the top
+        #print(columns) this print statemrnt was just for me to debug. my glob didnt collect anything initially because it couldnt find the results folder with my import 
+        #what i forgot was that this file is contained in the scripts folder of the repo, not in src, so added the sys line at the top.
         df = pd.read_csv(col, index_col=0)
         occ = df.loc[['PO7', 'Oz', 'PO8']]
 
