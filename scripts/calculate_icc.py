@@ -57,6 +57,6 @@ def calculate_icc():
 
 if __name__ == '__main__':
     results = calculate_icc()
-    icc2 = results[results['Type'] == 'ICC2']
+    icc2 = results[(results['Type'] == 'ICC2') | (results['Type'] == 'ICC3')]
     icc2.to_csv('outputs/icc2_results.csv', index=False)
     print(results)

@@ -11,6 +11,7 @@ from src.dryeeg import settings as S
 from src.dryeeg.logging_utils import (
     generate_run_id,
     derive_output_paths,
+    derive_results_paths,
     get_logger,
     create_manifest,
     save_manifest,
@@ -27,6 +28,7 @@ def run_pipeline(
     condition: str,
     pipeline_name: str,
     extra_step_fn=None,
+    save_results: bool = False,
 ) -> dict:
     """
     Standardised pipeline runner.
@@ -69,7 +71,12 @@ def run_pipeline(
     file_logger.info(f"Saved preprocessed data -> {output_paths['cleaned_fif_path']}")
 
     # 5. QC report
-    qc_summary = generate_qc_report(raw, output_paths, S)
+    results_paths = None
+    if save_results:
+        results_root = str(Path(S.PROJECT_ROOT) / S.RESULTS_DIRNAME)
+        results_paths = derive_results_paths(str(raw_path), pipeline_name, results_root)
+
+    qc_summary = generate_qc_report(raw, output_paths, S, results_paths=results_paths)
 
     # 6. Build and save manifest
     parameters = {

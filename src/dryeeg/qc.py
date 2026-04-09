@@ -74,7 +74,20 @@ def plot_psd(spectrum, output_path):
     fig.savefig(output_path, dpi=150, bbox_inches='tight')
     plt.close(fig)
 
-def generate_qc_report(raw, output_paths, settings):
+def save_topomap_alpha(bandpower_dict, raw_info, output_path):
+    import matplotlib.pyplot as plt
+    import mne
+
+    alpha_values = bandpower_dict["alpha"]
+    fig, ax = plt.subplots(figsize=(4, 4))
+    mne.viz.plot_topomap(alpha_values, raw_info, axes=ax, show=False, contours=4)
+    ax.set_title("Alpha Power (8–13 Hz)")
+    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+
+
+def generate_qc_report(raw, output_paths, settings, results_paths=None):
     """
     Run all QC metrics and save outputs.
     
@@ -107,6 +120,12 @@ def generate_qc_report(raw, output_paths, settings):
     Path(output_paths["bandpower_csv_path"]).parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_paths["bandpower_csv_path"])
     
+    if results_paths is not None:
+        Path(results_paths["bandpower_csv_path"]).parent.mkdir(parents=True, exist_ok=True)
+        df.to_csv(results_paths["bandpower_csv_path"])
+        plot_psd(spectrum, results_paths["psd_plot_path"])
+        save_topomap_alpha(bandpower, raw.info, results_paths["topomap_alpha_path"])
+
     # Return summary for manifest
     return {
         "rms_uv_per_channel": rms,

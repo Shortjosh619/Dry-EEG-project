@@ -1,9 +1,7 @@
-# src/dryeeg/settings.py
-from __future__ import annotations
-
 # ---------- Project identity ----------
 PROJECT_ROOT = r"C:\EEG_Dissertation"
 DERIVATIVES_DIRNAME = "derivatives"
+RESULTS_DIRNAME = "results"
 SUBJECT_ID = "sub-001"
 SESSION_ID = "ses-pilot"
 

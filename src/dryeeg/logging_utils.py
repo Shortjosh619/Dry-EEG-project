@@ -93,6 +93,21 @@ def save_manifest(manifest_dict, output_path):
     with open(output_path, "w") as f:
         json.dump(manifest_dict, f, indent=2, default=str)
 
+def derive_results_paths(source_path, pipeline_name, results_root):
+    parts = Path(source_path).parts
+    raw_idx = parts.index("raw")
+    relative_parts = parts[raw_idx + 1 : -1]
+
+    output_dir = Path(results_root) / pipeline_name
+    for part in relative_parts:
+        output_dir = output_dir / part
+
+    return {
+        "bandpower_csv_path": output_dir / "bandpower.csv",
+        "psd_plot_path":      output_dir / "psd_plot.png",
+        "topomap_alpha_path": output_dir / "topomap_alpha.png",
+    }
+
 def get_logger(run_id, log_dir):
     log_dir = Path(log_dir)
     log_dir.mkdir(parents=True, exist_ok=True)
