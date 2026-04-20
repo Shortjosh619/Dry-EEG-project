@@ -9,9 +9,9 @@ def compute_rms_per_channel(raw):
 
     return dict(zip(names, rms))
 
-def compute_psd(raw, fmin, fmax):
+def compute_psd(raw, fmin, fmax, fft=1024, overlap=512):
     
-    spectrum = raw.compute_psd(fmin=fmin, fmax=fmax)
+    spectrum = raw.compute_psd(fmin=fmin, fmax=fmax, n_fft=fft, n_overlap=overlap)
     psd, freqs = spectrum.get_data(return_freqs=True)
     psd_uv  = psd * 1e12
 
@@ -80,8 +80,10 @@ def save_topomap_alpha(bandpower_dict, raw_info, output_path):
 
     alpha_values = bandpower_dict["alpha"]
     fig, ax = plt.subplots(figsize=(4, 4))
-    mne.viz.plot_topomap(alpha_values, raw_info, axes=ax, show=False, contours=4)
-    ax.set_title("Alpha Power (8–13 Hz)")
+    im, cn = mne.viz.plot_topomap(alpha_values, raw_info, axes=ax, show=False, contours=4, cmap='plasma')
+    cbar = plt.colorbar(im, ax=ax)
+    cbar.set_label('Power (µV²)')
+    ax.set_title("Alpha Power (8-13 Hz)")
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
