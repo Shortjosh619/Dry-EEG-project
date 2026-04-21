@@ -1,6 +1,4 @@
-# ICC Reliability Study - Required Sample Size Calculation
-# Package: ICC.Sample.Size
-# Parameters: p = 0.75, p0 = 0, k = 2 raters, alpha = 0.05, power = 0.95, two-tailed
+#Sample size calc
 
 if (!requireNamespace("ICC.Sample.Size", quietly = TRUE)) {
   install.packages("ICC.Sample.Size")
