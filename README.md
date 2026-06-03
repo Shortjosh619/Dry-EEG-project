@@ -2,7 +2,7 @@
 
 **Evaluating the Effect of Cumulative EEG Preprocessing on the Test-Retest Reliability of Resting-State Alpha-Band Power Using a Dry-Electrode System**
 
-BSc Psychology with Cognitive Neuroscience — University of Leicester, 2025–26  
+BSc Psychology with Cognitive Neuroscience — University of Leicester 
 Author: Joshua Ajemiri | Supervisor: Dr. Qadeer Arshad
 
 ---
@@ -44,10 +44,10 @@ Four cumulative preprocessing pipelines were evaluated. Each pipeline builds on 
 
 | Pipeline   | Steps applied                                                                   |
 |------------|---------------------------------------------------------------------------------|
-| Baseline   | Bandpass filter (0.5–30 Hz) + 50 Hz notch                                       |
+| Baseline   | Bandpass filter (1–30 Hz) + 50 Hz notch                                       |
 | + ASR      | Baseline + Artifact Subspace Reconstruction (cutoff = 15 SD)                    |
 | + ICA      | ASR + Picard ICA (7 components, Fz as EOG proxy, ρ ≥ 0.90)                     |
-| + Wavelet  | ICA + db4 wavelet denoising (4-level, soft universal threshold, D1–D3 only)     |
+| + Wavelet  | ICA + sym4 wavelet denoising (4-level, soft universal threshold, D1–D3 only)     |
 
 ---
 
